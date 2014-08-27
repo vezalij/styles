@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Ukrainian National Standard 3008-95</title>
+	<title-short>DSTU 3008-95</title-short>
+    <id>http://www.zotero.org/styles/Ukrainian-National-Standard</id>
+    <link href="http://www.zotero.org/styles/Ukrainian-National-Standard" rel="self"/>
+    <author>
+      <name>Andriy Revura</name>
+      <email>vezalij@gmail.com</email>
+    </author>
+    <category field="medicine"/>
+    <category citation-format="numeric"/>
+    <updated>2014-08-28T17:00:00+00:00</updated>
+    <summary>
+    The style is designed according to DSTU 3008-95 standard of bibliography citation
+    </summary>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+ 
+  <locale xml:lang="en">
+	 <terms xmlns="http://purl.org/net/xbiblio/csl">
+		<term name="et-al"> [et\u00A0al.]</term>
+		<term name="and others"></term>
+		<term name="page">Page</term>
+		<term name="page" form="short">P.</term>
+	 </terms>
+  </locale>
+  
+  <locale xml:lang="uk">
+	 <terms xmlns="http://purl.org/net/xbiblio/csl">
+		<term name="et-al"> [та\u00A0ін.]</term>
+		<term name="page">Стор.</term>
+		<term name="page" form="short">С.</term>
+		
+	 </terms>
+  </locale>
+
+  <locale xml:lang="ru">
+  	 <terms xmlns="http://purl.org/net/xbiblio/csl">
+	    <term name="et-al">\u0438\u00A0u\0434\u0440.</term>
+	 </terms>
+  </locale>
+  
+  <macro name="language-sort">
+<!--      <text variable="language"/> -->
+	 <text variable="genre"/>
+  </macro>
+  
+  <macro name="author">
+     <names variable="author" suffix=". ">
+      <name et-al-min="2" suppress-min="4" sort-separator=" " initialize-with="." name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
+	  	    <et-al term="and others"/>
+      <label form="long" prefix=", " text-case="lowercase"/>
+    </names>
+  </macro>
+  
+  <macro name="all_authors">
+    <names variable="author">
+      <name et-al-min="3" et-al-use-first="3" sort-separator="\u00A0" initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+      <label form="long" prefix=", " text-case="lowercase"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+  
+  <macro name="editor">
+    <names variable="editor" suffix=". ">
+      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
+      <label form="long" prefix=", " text-case="lowercase"/>
+    </names>
+  </macro>
+  
+  <macro name="publisher">
+    <group delimiter=": " suffix=", ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+	</group>
+    <group suffix=".\u00A0">
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+<!--       <text macro="accessed-date" prefix=" "/> -->
+    </group>
+  </macro>
+  
+<!--   <macro name="access">
+    <group>
+      <text value="Available from: "/>
+      <text variable="URL"/>
+    </group>
+  </macro> -->
+<!--   <macro name="accessed-date">
+    <choose>
+      <if variable="URL">
+        <group prefix="[" suffix="]" delimiter=" ">
+          <text term="cited" text-case="lowercase"/>
+          <date variable="accessed" suffix="">
+            <date-part name="year"/>
+            <date-part name="month" prefix=" " form="short" strip-periods="true"/>
+            <date-part name="day" prefix=" "/>
+          </date>
+        </group>
+      </if>
+    </choose>
+  </macro> -->
+  
+  <macro name="journal-title">
+    <choose>
+      <if type="article-journal article-magazine" match="any">
+        <group prefix="\u00A0// " suffix=".\u00A0\u2014 ">
+          <text variable="container-title" form="short"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+  
+  <macro name="title">
+    <group delimiter=" ">
+      <text variable="title"/>
+<!--       <choose>
+        <if type="article-journal article-magazine" match="none">
+          <choose>
+            <if variable="URL">
+              <text term="internet" prefix="[" suffix="]" text-case="capitalize-first"/>
+            </if>
+          </choose>
+        </if>
+      </choose> -->
+    </group>
+  </macro>
+  
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short" suffix="." strip-periods="true"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition" suffix="."/>
+      </else>
+    </choose>
+  </macro>
+  
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+    
+  <bibliography second-field-align="flush">
+    <sort>
+	  <key macro="language-sort" sort="descending"/>
+      <key macro="all_authors"/>
+	  <key variable="issued"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" suffix=". "/>
+      <text macro="author"/>
+      <text macro="title" suffix="\u00A0/ "/>
+      <choose>
+        <if type="bill book graphic legal_case motion_picture report song" match="any">
+		  <text macro="all_authors" suffix=".\u00A0"/>
+          <text macro="edition" prefix="\u2014 " suffix="\u00A0"/>
+          <text macro="publisher" prefix="\u2014 "/>
+		  <text variable="page" prefix="\u2014 " suffix="\u00A0\u0441."/>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+		  <text macro="all_authors" suffix=""/>
+          <group prefix=" " suffix=". ">
+            <text term="in" suffix=": " text-case="capitalize-first"/>
+            <text macro="editor"/>
+            <text variable="container-title"/>
+          </group>
+          <text macro="publisher" prefix=" "/>
+          <text variable="page" prefix=" p. " suffix="."/>
+        </else-if>
+        <else-if type="article-journal" match="any">
+		  <text macro="all_authors" suffix=""/>
+          <text macro="journal-title"/>
+          <date variable="issued">
+            <date-part name="year" suffix=".\u00A0\u2014 "/>
+          </date>
+		  <group delimiter=", " suffix=".\u00A0">
+			<text variable="volume" prefix="Vol.\u00A0"/>
+			<text variable="issue" prefix="\u2116\u00A0"/>
+		  </group>
+          <text variable="page" prefix="\u2014 P.\u00A0" suffix="."/>
+        </else-if>
+		<else-if type="article-magazine" match="any">
+		  <text macro="all_authors" suffix=""/>
+          <text macro="journal-title"/>
+          <date variable="issued">
+            <date-part name="year" suffix=".\u00A0\u2014 "/>
+          </date>
+		  <group delimiter=", " suffix=".\u00A0">
+            <text variable="volume" prefix="\u0422.\u00A0"/>
+            <text variable="issue" prefix="\u2116\u00A0"/>
+	      </group>
+          <text variable="page" prefix="\u2014 \u0421.\u00A0" suffix="."/>
+        </else-if>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
